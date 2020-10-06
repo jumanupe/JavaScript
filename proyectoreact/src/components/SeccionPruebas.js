@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import MiComponente from './MiComponente';
-import Peliculas from './Peliculas';
 
 class SeccionPruebas extends Component {
 
@@ -51,7 +50,7 @@ class SeccionPruebas extends Component {
                 <section className="components">
 
                     <MiComponente />
-                    <Peliculas />
+                    <MiComponente />
 
                 </section>
 

@@ -12,11 +12,28 @@ class Peliculas extends Component {
         nombre: 'Juanma Pereyra'
     };
 
+    cambiarTitulo = () => {
+
+        var { peliculas } = this.state;
+        var random = Math.floor(Math.random() * 3)
+        peliculas[random].titulo = "Donnie Darko 2";
+
+        this.setState({
+            peliculas: peliculas
+        });
+    }
+
     render() {
         return (
             <div id='content' className="peliculas">
                 <h2 className="subheader">Peliculas</h2>
                 <p>Seleccion de las peliculas favoritas de {this.state.nombre}</p>
+                <p>
+                    <button onClick={this.cambiarTitulo}>
+                        Cambiar titulo de Donnie Darko
+                    </button>
+                
+                </p>
 
                 {/*Creando componente de peliculas*/}
 
@@ -25,7 +42,10 @@ class Peliculas extends Component {
                     {
                         this.state.peliculas.map((pelicula, i) => {
                             return (
-                                <Pelicula key={i} pelicula={pelicula}/>
+                                <Pelicula 
+                                    key={i} 
+                                    pelicula={pelicula}
+                                />
                             )
                         })
                     }

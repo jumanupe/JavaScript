@@ -3,15 +3,7 @@ import Pelicula from './Pelicula';
 
 
 class Peliculas extends Component {
-    state = {
-        peliculas: [
-            { titulo: 'Donnie Darko', image: 'https://i1.wp.com/www.caninomag.es/wp-content/uploads/2017/04/Donnie-Cover-min.jpg?resize=634%2C358&ssl=1' },
-            { titulo: 'Prisoners', image: 'https://i.pinimg.com/originals/9b/a6/6a/9ba66a3cfc410b8f2af5700d964723ba.jpg' },
-            { titulo: 'Interstellar', image: 'https://estaticos.elperiodico.com/resources/jpg/9/1/escena-interstellar-1568859222219.jpg' }
-        ],
-        nombre: 'Juanma Pereyra',
-        favorita: {}
-    };
+    state = {};
 
     cambiarTitulo = () => {
 
@@ -32,6 +24,29 @@ class Peliculas extends Component {
         });
     }
 
+
+    componentWillMount(){
+        // alert("Se va a montar el componente");
+        this.setState({
+            peliculas: [
+                { titulo: 'Donnie Darko', image: 'https://i1.wp.com/www.caninomag.es/wp-content/uploads/2017/04/Donnie-Cover-min.jpg?resize=634%2C358&ssl=1' },
+                { titulo: 'Prisoners', image: 'https://i.pinimg.com/originals/9b/a6/6a/9ba66a3cfc410b8f2af5700d964723ba.jpg' },
+                { titulo: 'Interstellar', image: 'https://estaticos.elperiodico.com/resources/jpg/9/1/escena-interstellar-1568859222219.jpg' }
+            ],
+            nombre: 'Juanma Pereyra',
+            favorita: {}
+        });
+    }
+
+    componentDidMount(){
+        //alert("Ya se ha montado el componente");
+    }
+
+    componentWillUnmount(){
+        //alert("Me voy a desmontar");
+    }
+
+
     render() {
         var pStyle = {
 
@@ -39,6 +54,22 @@ class Peliculas extends Component {
             color: 'white',
             padding: '10px'
         };
+
+        var favorita;
+        if(this.state.favorita.titulo){
+            favorita = (
+                <p className="favorita" style={pStyle}>
+
+                        <strong>La pelicula favorita es: </strong>
+                        <span>{this.state.favorita.titulo}</span>
+                </p>
+            );
+        } else {
+            favorita = (
+                <p>NO HAY PELICULA FAVORITA</p>
+            )
+        }
+
         return (
             <div id='content' className="peliculas">
                 <h2 className="subheader">Peliculas</h2>
@@ -50,14 +81,18 @@ class Peliculas extends Component {
 
                 </p>
 
-                {this.state.favorita.titulo &&
-                    <p className="favorita" style={pStyle}>
+                {/*this.state.favorita.titulo ? (
+                        <p className="favorita" style={pStyle}>
 
-                        <strong>La pelicula favorita es: </strong>
-                        <span>{this.state.favorita.titulo}</span>
+                            <strong>La pelicula favorita es: </strong>
+                            <span>{this.state.favorita.titulo}</span>
 
-                    </p>
-                }
+                        </p>
+                    ) : (
+                        <p>NO HAY PELICULA FAVORITA</p>
+                    )
+                */}
+                {favorita}
 
 
                 {/*Creando componente de peliculas*/}
